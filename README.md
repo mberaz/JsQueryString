@@ -1,6 +1,8 @@
 this is a simple to handle query strings in JS
 
 (if you need to to this in C#, check out the cs version at https://github.com/mberaz/CsQueryString)
+
+
 to start using just add the file QueryStringHandler.min.js to a HTML page
 
 if you only need to parse the query string you can use the static object
@@ -49,6 +51,7 @@ qs.UpdateList([{
 
 all insert and update methots can get a DuplicateKeyMode value, this tells the method how to handle duplicates keys
 the possible values are
+
 var DuplicateKeyMode = {
     Concat: 1,
     Replase: 2,
