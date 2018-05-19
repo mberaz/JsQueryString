@@ -4,6 +4,13 @@ var DuplicateKeyMode = {
     KeepOld: 3
 }
 
+var QueryStringHandlerStatic = {
+
+    ParseQueryString: function (url, duplicateValueMode) {
+        var qs = new QueryStringHandler(url, duplicateValueMode);
+        return qs.ParseQueryString(url, duplicateValueMode);
+    }
+};
 
 var QueryStringHandler = function (url, duplicateValueMode) {
 
@@ -31,7 +38,8 @@ var QueryStringHandler = function (url, duplicateValueMode) {
         return (prefixQuestionMark ? '?' : '') + list.join('&');
     };
 
-    self.ParseQueryString = function (url, duplicateValueMode) {
+
+    self.ParseQueryString = function () {
         if (!duplicateValueMode) {
             duplicateValueMode = DuplicateKeyMode.Concat;
         }
@@ -84,8 +92,14 @@ var QueryStringHandler = function (url, duplicateValueMode) {
         }
     }
 
-    self.UpdateKey = function (key, value) {
-        self.UpdateKeyValue(self.data, key, value, DuplicateKeyMode.Replase);
+    self.UpdateKey = function (key, value, duplicateValueMode) {
+        self.UpdateKeyValue(self.data, key, value, duplicateValueMode || DuplicateKeyMode.Replase);
+    }
+
+    self.UpdateList = function (list, duplicateValueMode) {
+        for (var i = 0; i < list.length; i++) {
+            self.UpdateKeyValue(self.data, list[i].key, list[i].value, duplicateValueMode || DuplicateKeyMode.Replase);
+        };
     }
 
     self.DeleteKey = function (key) {

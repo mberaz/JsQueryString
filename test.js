@@ -14,6 +14,18 @@ $(document).ready(function () {
         value: 'l2'
     }]);
 
+
+    qs.UpdateKey('l2','l3');
+
+    qs.UpdateList([{
+        key: 'l1',
+        value: 'ul1'
+    }, {
+        key: 'l2',
+        value: 'ul2'
+    }]);
+
+
     qs.DeleteKey('del');
     qs.RenameKey('car', 'rac');
 
@@ -23,5 +35,7 @@ $(document).ready(function () {
         return k + "=" + v + '2';
     });
 
+
+    var result=QueryStringHandlerStatic.ParseQueryString('htp://www.test.com?firstname=name&lastname=last&lastname=name',DuplicateKeyMode.Concat);
     var s = "";
 });
