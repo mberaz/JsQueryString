@@ -54,7 +54,7 @@ var QueryStringHandler = function (url, duplicateValueMode) {
             var qsParam = queryStringParams[i];
             var paramParts = qsParam.split("=");
             var key = paramParts[0];
-            var value = paramParts[1];
+            var value = paramParts.length == 2 ? paramParts[1] : '';
             self.InsertKey(data, key, value, duplicateValueMode);
         }
         return data;
